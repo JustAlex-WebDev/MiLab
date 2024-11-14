@@ -1,5 +1,7 @@
+// Import required modules
 import path from "path";
 
+// Nuxt.js configuration
 export default defineNuxtConfig({
   css: ["vuetify/styles", "@/assets/styles/main.scss"],
   build: {
@@ -11,14 +13,14 @@ export default defineNuxtConfig({
     },
     resolve: {
       alias: {
-        "@locales": path.resolve(__dirname, "locales"), // Alias for locales directory
+        "@locales": path.resolve(__dirname, "locales"),
       },
     },
   },
   modules: ["@nuxtjs/i18n"],
   i18n: {
-    vueI18n: "./i18n/i18n.config.ts", // Path to custom i18n configuration
-    locales: ["en", "fr"], // List of available locales
-    defaultLocale: "en", // Default language
+    vueI18n: "./i18n/i18n.config.ts",
+    locales: ["en", "fr"],
+    defaultLocale: "en",
   },
 });

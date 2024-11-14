@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Props
 definePageMeta({
   layout: "default",
   redirect: "portal-mockup",

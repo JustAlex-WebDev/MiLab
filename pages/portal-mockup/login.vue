@@ -98,8 +98,6 @@ const appendInnerIcon = (field) =>
 </template>
 
 <style scoped lang="scss">
-@import "/assets/styles/main.scss";
-
 .login-container {
   height: 100%;
   display: flex;

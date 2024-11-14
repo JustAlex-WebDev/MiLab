@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+// Props
 defineProps({
   item: {
     type: Object,
@@ -10,17 +11,26 @@ defineProps({
 <template>
   <v-hover v-slot="{ isHovering, props }">
     <NuxtLink :to="item.path" class="text-decoration-none">
+      <!-- Card -->
       <v-card
         v-bind="props"
-        class="pa-4 cursor-pointer position-relative"
-        :elevation="isHovering ? 4 : 2"
+        class="pa-4 cursor-pointer position-relative bg-white"
+        :elevation="isHovering ? 4 : 1"
       >
+        <!-- Title -->
         <v-card-title class="d-flex align-center">
+          <!-- Prepended Icon -->
           <v-icon color="teal" size="28">
             {{ item.icon }}
           </v-icon>
+
+          <!-- Heading Text -->
           <span class="ms-3 text-h6 font-weight-bold">{{ item.title }}</span>
+
+          <!-- Spacer -->
           <v-spacer></v-spacer>
+
+          <!-- Arrow Icon -->
           <v-icon
             color="teal"
             size="32"
@@ -30,6 +40,8 @@ defineProps({
             mdi-chevron-right
           </v-icon>
         </v-card-title>
+
+        <!-- Subtitle -->
         <v-card-subtitle class="text-body-1">
           {{ item.subtitle }}
         </v-card-subtitle>

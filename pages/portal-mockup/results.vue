@@ -1,10 +1,16 @@
-<script setup>
-import { ref } from "vue";
-
+<script setup lang="ts">
+// Localization logic
 const localePath = useLocalePath();
 
-// Breadcrumbs setup
-const items = ref([
+// Define breadcrumb item type
+interface BreadcrumbItem {
+  title: string;
+  disabled: boolean;
+  href: string;
+}
+
+// Breadcrumbs items (navigation links)
+const items: Ref<BreadcrumbItem[]> = ref([
   {
     title: "Home",
     disabled: false,
@@ -12,13 +18,19 @@ const items = ref([
   },
   {
     title: "Results",
-    disabled: true,
+    disabled: true, // Disabled, not clickable
     href: localePath("/portal-mockup/results"),
   },
 ]);
 
-// Table data
-const tableData = ref([
+// Define table row type
+interface TableDataRow {
+  label: string;
+  value: string;
+}
+
+// Table data for displaying results
+const tableData: Ref<TableDataRow[]> = ref([
   {
     label: "СМДЛ Милаб ЕООД",
     value:
@@ -101,27 +113,24 @@ const tableData = ref([
   },
 ]);
 
-// Headers for the table
-const headers = ref([
-  { text: "Label", value: "label" },
-  { text: "Value", value: "value" },
-]);
+// Define table header type
+interface TableHeader {
+  text: string;
+  value: string;
+}
 
-const viewDetail = (item) => {
+// Dummy function for showing details (can be extended later)
+const viewDetail = (item: TableDataRow) => {
   alert(`Viewing details for ${item.title}`);
 };
-
-// Localization Logic
-// const { locale } = useI18n();
-// const { setLocale } = useI18n();
 </script>
 
 <template>
   <v-container>
-    <!-- Breadcrumbs -->
+    <!-- Breadcrumbs Navigation -->
     <v-breadcrumbs class="pa-0 mb-4">
       <template v-for="(item, index) in items" :key="index">
-        <!-- NuxtLink wraps the entire item -->
+        <!-- Active breadcrumb links -->
         <NuxtLink
           :to="item.href"
           class="text-teal font-weight-bold"
@@ -132,7 +141,7 @@ const viewDetail = (item) => {
           </v-breadcrumbs-item>
         </NuxtLink>
 
-        <!-- Disabled breadcrumb item without NuxtLink -->
+        <!-- Disabled breadcrumb items -->
         <v-breadcrumbs-item
           v-else
           :disabled="item.disabled"
@@ -141,17 +150,22 @@ const viewDetail = (item) => {
           {{ item.title }}
         </v-breadcrumbs-item>
 
-        <!-- Add separator '/' between items but not after the last item -->
+        <!-- Separator - '/' -->
         <template v-if="index < items.length - 1">
           <span class="mx-1">/</span>
         </template>
       </template>
     </v-breadcrumbs>
 
-    <!-- Heading and Export Button -->
+    <!-- Page Title and Export Button -->
     <v-row class="pt-4 px-4 d-flex">
+      <!-- Page title -->
       <span class="text-teal text-h4 font-weight-bold">Your Results</span>
+
+      <!-- Spacer -->
       <v-spacer></v-spacer>
+
+      <!-- Export button -->
       <v-btn
         prepend-icon="mdi-file-document-outline"
         type="button"
@@ -164,24 +178,28 @@ const viewDetail = (item) => {
       </v-btn>
     </v-row>
 
-    <!-- Language Switcher -->
-    <!-- <v-row class="my-2 ml-1">
-      <button @click="setLocale('en')" class="mr-2">English</button>
-      <button @click="setLocale('fr')" class="">Français</button>
-    </v-row>
-    <p>{{ $t("welcome") }} {{ locale }}</p> -->
+    <!-- Language Switcher (currently commented out) -->
+    <!-- 
+      <v-row class="my-2 ml-1">
+        <button @click="setLocale('en')" class="mr-2">English</button>
+        <button @click="setLocale('fr')" class="">Français</button>
+      </v-row>
+      <p>{{ $t("welcome") }} {{ locale }}</p>
+    -->
 
-    <!-- Results Table -->
+    <!-- Results Data Table -->
     <v-data-table-virtual
       hide-default-header
-      :headers="headers"
       :items="tableData"
       item-value="label"
       class="my-8 bg-white"
     >
+      <!-- Custom slot for displaying 'label' -->
       <template v-slot:[`item.label`]="{ item }">
         <strong>{{ item.label }}</strong>
       </template>
+
+      <!-- Default slot for displaying 'value' -->
       <template v-slot:[`item.value`]="{ item }">
         {{ item.value }}
       </template>
