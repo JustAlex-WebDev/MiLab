@@ -1,0 +1,21 @@
+@import "@mdi/font/css/materialdesignicons.min.css";
+
+// Variables
+$primary-color: #085d4f;
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: $primary-color;
+}
+
+body,
+.v-app {
+  overflow: hidden;
+}
