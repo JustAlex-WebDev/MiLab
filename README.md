@@ -1,75 +1,73 @@
-# Nuxt Minimal Starter
+# MiLab Project - Technical Documentation
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Overview
 
-## Setup
+This project is a modern web-based application developed to enhance the functionality and accessibility of MiLab's clinical services. The application is designed with a focus on user experience, multilingual support, and adherence to contemporary design standards.
 
-Make sure to install dependencies:
+## Technologies Used
 
+### 1. **Nuxt 3**
+- Framework for building high-performance, SEO-friendly web applications.
+- Features server-side rendering (SSR) and static site generation (SSG).
+
+### 2. **Vue 3**
+- JavaScript framework used for creating a dynamic and responsive user interface.
+- Implements the Composition API for cleaner and more maintainable code.
+
+### 3. **Vuetify 3**
+- UI library following Material Design 3 (MD3) principles.
+- Provides ready-to-use, accessible components and utility classes.
+
+### 4. **Material Design 3**
+- Delivers a modern, scalable design language.
+- Focused on accessibility, usability, and consistency across devices.
+
+### 5. **i18n**
+- Internationalization support for a multilingual user experience.
+- Currently supports English (default) and French, with potential for additional locales.
+
+## Key Features
+
+- **Responsive Design:** Ensures optimal usability across devices.
+- **Multilingual Support:** Simplifies navigation for a global audience.
+- **Secure Data Access:** Streamlines clinical result and service access.
+- **Dynamic Forms:** Smooth user interaction powered by Vue 3 and Vuetify.
+
+## Project Setup
+
+### Installation
+Install dependencies using your preferred package manager:
 ```bash
 # npm
 npm install
 
-# pnpm
-pnpm install
-
 # yarn
 yarn install
 
-# bun
-bun install
+# pnpm
+pnpm install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### Development Server
+Start the development server:
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+Access the app at http://localhost:3000.
 
-## Production
-
+### Build for Production
 Build the application for production:
-
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
-
-Locally preview production build:
-
+Preview the production build:
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Future Enhancements
+-**Expanding Language Support:** Broaden accessibility for diverse user groups.
+
+-**Adding Advanced Analytics:** Gain insights to improve user experience.
+
+-**Enhancing Accessibility:** Improve features for users with disabilities.
