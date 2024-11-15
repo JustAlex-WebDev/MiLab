@@ -1,4 +1,4 @@
-# MiLab Project - Technical Documentation
+# MiLab Project
 
 ## Overview
 
@@ -66,8 +66,7 @@ npm run preview
 ```
 
 ## Future Enhancements
--**Expanding Language Support:** Broaden accessibility for diverse user groups.
 
--**Adding Advanced Analytics:** Gain insights to improve user experience.
-
--**Enhancing Accessibility:** Improve features for users with disabilities.
+- **Expanding Language Support:** Broaden accessibility for diverse user groups.
+- **Adding Advanced Analytics:** Gain insights to improve user experience.
+- **Enhancing Accessibility:** Improve features for users with disabilities.
