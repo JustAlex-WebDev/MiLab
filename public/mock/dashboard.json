@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Results",
+    "subtitle": "Check out your results",
+    "path": "/results",
+    "icon": "mdi-file-document-outline"
+  },
+  {
+    "title": "Export Results",
+    "subtitle": "Get your results in a PDF file",
+    "path": "/export-results",
+    "icon": "mdi-file-export-outline"
+  },
+  {
+    "title": "Bank Info",
+    "subtitle": "More info about your payments",
+    "path": "/",
+    "icon": "mdi-bank-outline"
+  },
+  {
+    "title": "Sign Out",
+    "subtitle": "Exit and close the session",
+    "path": "/login",
+    "icon": "mdi-logout"
+  }
+]

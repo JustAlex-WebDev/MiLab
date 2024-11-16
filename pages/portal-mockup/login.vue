@@ -108,14 +108,6 @@ const appendInnerIcon = (field: string) =>
                 Sign In
               </v-btn>
             </v-form>
-
-            <!-- Signup link-->
-            <div class="mt-4 text-center text-body-2 text-teal">
-              <span>Don't have an account yet? </span>
-              <span class="font-weight-bold text-decoration-none cursor-pointer"
-                >Sign Up</span
-              >
-            </div>
           </v-card-text>
         </v-card>
       </v-col>

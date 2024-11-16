@@ -1,16 +1,14 @@
 <script setup lang="ts">
-// Props
-defineProps({
-  item: {
-    type: Object,
-    required: true,
-  },
-});
+import type { DashboardItem } from "~/types";
+
+defineProps<{
+  item: DashboardItem;
+}>();
 </script>
 
 <template>
   <v-hover v-slot="{ isHovering, props }">
-    <NuxtLink :to="item.path" class="text-decoration-none">
+    <NuxtLink :to="item.href" class="text-decoration-none">
       <!-- Card -->
       <v-card
         v-bind="props"

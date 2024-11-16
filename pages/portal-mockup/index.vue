@@ -1,44 +1,38 @@
 <script setup lang="ts">
-// Router instance for navigation
+// Router instance
 const router = useRouter();
 
 // Localization logic
 const localePath = useLocalePath();
 
 // Dashboard items
-const items = [
-  {
-    title: "Results",
-    subtitle: "Check out your results",
-    path: `${localePath("/portal-mockup/results")}`,
-    icon: "mdi-file-document-outline",
-  },
-  {
-    title: "Export Results",
-    subtitle: "Get your results in a PDF file",
-    path: `${localePath("/portal-mockup/export-results")}`,
-    icon: "mdi-file-export-outline",
-  },
-  {
-    title: "Bank Info",
-    subtitle: "More info about your payments",
-    path: `${localePath("/portal-mockup/bank-info")}`,
-    icon: "mdi-bank-outline",
-  },
-  {
-    title: "Sign Out",
-    subtitle: "Exit and close the session",
-    path: `${localePath("/portal-mockup/login")}`,
-    icon: "mdi-logout",
-  },
-];
+const items = ref<DashboardItem[]>([]);
+const loading = ref(true);
 
-// Function that checks if the user is logged in and redirects him if he is not
-onMounted(() => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+/**
+ * Function that fetches dashboard items and updates their paths
+ */
+onMounted(async () => {
+  try {
+    // Fetch dashboard data
+    const rawItems = await useFetchData<DashboardItem[]>("/dashboard");
 
-  if (!isLoggedIn) {
-    router.push(localePath("/portal-mockup/login"));
+    // Map through items and localize the paths
+    items.value = rawItems.map((item) => {
+      const basePath = `/portal-mockup${item.path}`;
+      const href = localePath(basePath);
+
+      return {
+        ...item,
+        href,
+      };
+    });
+  } catch (error) {
+    // Log error if fetching fails
+    console.error("Error fetching dashboard items:", error);
+  } finally {
+    // Stop loading indicator once the data is processed
+    loading.value = false;
   }
 });
 </script>
@@ -47,19 +41,28 @@ onMounted(() => {
   <v-container class="pa-0 pt-4">
     <!-- User Welcome Section -->
     <v-row class="px-6 py-4 align-center d-flex flex-column flex-sm-row">
-      <!-- Welcome message -->
       <v-col class="d-flex justify-center justify-sm-start py-0">
         <span class="text-h4 font-weight-bold text-teal">Welcome back!</span>
       </v-col>
 
-      <!-- User's name and surname -->
       <v-col class="d-flex justify-center justify-sm-end py-0">
         <span class="text-h6 font-weight-bold text-teal">Alexandar Valov</span>
       </v-col>
     </v-row>
 
+    <!-- Loading Indicator -->
+    <div v-if="loading" class="d-flex justify-center align-center">
+      <span>Loading data...</span>
+    </div>
+
     <!-- Loop through the dashboard items -->
-    <v-row max-width="1024" class="mx-auto" align="center" justify="center">
+    <v-row
+      max-width="1024"
+      class="mx-auto"
+      align="center"
+      justify="center"
+      v-else
+    >
       <v-col cols="12" sm="6" v-for="item in items" :key="item.title">
         <!-- Card Component -->
         <Card :item="item" />
