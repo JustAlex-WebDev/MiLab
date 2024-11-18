@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { DashboardItem } from "~/types/dashboard";
+
 // Router instance
 const router = useRouter();
 

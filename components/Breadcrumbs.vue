@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BreadcrumbItem } from "~/types/breadcrumbs";
+
 // Props
 defineProps<{
   items: BreadcrumbItem[];

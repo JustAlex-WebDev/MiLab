@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { TableDataRow } from "~/types/results";
+
 // Props
 defineProps<{
   data: TableDataRow[];

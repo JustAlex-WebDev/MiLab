@@ -11,7 +11,7 @@ const props = defineProps({
 // const drawer = ref<boolean>(false);
 
 // i18n (localization) setup
-const { locale, locales } = useI18n();
+const { locale } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 
@@ -20,7 +20,7 @@ const selectedLanguage = ref<string>(locale.value);
 
 // Function that switches app locale and updates path based on `lang` code
 // - lang (string): Locale code to switch to (e.g., 'en', 'fr')
-const changeLanguage = (lang: string): void => {
+const changeLanguage = (lang: "en" | "fr"): void => {
   const newPath = switchLocalePath(lang);
   if (newPath) {
     selectedLanguage.value = lang;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DashboardItem } from "~/types";
+import type { DashboardItem } from "~/types/dashboard";
 
 defineProps<{
   item: DashboardItem;

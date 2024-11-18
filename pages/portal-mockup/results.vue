@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { TableDataRow } from "~/types/results";
+
 // Table data and loading state
 const tableData = ref<TableDataRow[]>([]);
 const loading = ref(true);
