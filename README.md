@@ -24,7 +24,7 @@ This project is a modern web-based application developed to enhance the function
 
 ### 5. **i18n**
 - Internationalization support for a multilingual user experience.
-- Currently supports English (default) and French, with potential for additional locales.
+- Currently supports English (default) and Bulgarian, with potential for additional locales.
 
 ## Key Features
 
