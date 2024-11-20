@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import type { TableDataRow } from "~/types/results";
 
+useHead({
+  title: "MiLab - Results",
+  meta: [
+    {
+      name: "description",
+      content: "The Results for your medical laboratories.",
+    },
+  ],
+});
+
 // Table data and loading state
 const tableData = ref<TableDataRow[]>([]);
 const loading = ref(true);
