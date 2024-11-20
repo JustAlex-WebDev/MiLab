@@ -6,5 +6,6 @@ export interface DashboardItem {
   subtitle: string;
   path: string;
   icon: string;
-  href: string | undefined;
+  href: string;
+  key: string;
 }

@@ -16,13 +16,18 @@ const tableData = ref<TableDataRow[]>([]);
 const loading = ref(true);
 
 // Localization Logic
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 // Breadcrumbs
 const breadcrumbs = ref([
-  { title: "Home", disabled: false, href: localePath("/portal-mockup") },
   {
-    title: "Results",
+    title: t("breadcrumbs.home"),
+    disabled: false,
+    href: localePath("/portal-mockup"),
+  },
+  {
+    title: t("breadcrumbs.results"),
     disabled: true,
     href: localePath("/portal-mockup/results"),
   },
@@ -36,8 +41,26 @@ const fetchData = async () => {
     // Fetch data from the API (client-side)
     const data = await $fetch("/api/results");
 
-    // Ensure that the response is an array and update tableData
-    tableData.value = Array.isArray(data) ? data : [];
+    /// Map the mock data with localized strings and add a 'key' property temporarily
+    tableData.value = data.map((item: { key: string }) => {
+      const labelKey = item.key;
+
+      // Get the localized label and value
+      const localizedLabel = t(
+        `results_page.table_data.${labelKey}.label`,
+        item.key
+      );
+      const localizedValue = t(
+        `results_page.table_data.${labelKey}.value`,
+        item.key
+      );
+
+      // Return only the 'label' and 'value' properties for the table
+      return {
+        label: localizedLabel,
+        value: localizedValue,
+      };
+    });
   } catch (error) {
     console.error("Error fetching results:", error);
   } finally {
@@ -68,7 +91,9 @@ onMounted(() => {
 
     <!-- Page Title and Export Button -->
     <v-row class="pt-4 px-4 d-flex">
-      <span class="text-teal text-h4 font-weight-bold">Your Results</span>
+      <span class="text-teal text-h4 font-weight-bold">{{
+        $t("results_page.title")
+      }}</span>
       <v-spacer></v-spacer>
       <v-btn
         prepend-icon="mdi-file-document-outline"
@@ -78,7 +103,7 @@ onMounted(() => {
         color="teal"
         class="font-weight-medium"
       >
-        Export
+        {{ $t("results_page.export_button") }}
       </v-btn>
     </v-row>
 

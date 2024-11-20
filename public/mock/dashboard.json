@@ -1,25 +1,21 @@
 [
   {
-    "title": "Results",
-    "subtitle": "Check out your results",
+    "key": "results",
     "path": "/results",
     "icon": "mdi-file-document-outline"
   },
   {
-    "title": "Export Results",
-    "subtitle": "Get your results in a PDF file",
+    "key": "export_results",
     "path": "/export-results",
     "icon": "mdi-file-export-outline"
   },
   {
-    "title": "Bank Info",
-    "subtitle": "More info about your payments",
+    "key": "bank_info",
     "path": "/",
     "icon": "mdi-bank-outline"
   },
   {
-    "title": "Sign Out",
-    "subtitle": "Exit and close the session",
+    "key": "sign_out",
     "path": "/login",
     "icon": "mdi-logout"
   }

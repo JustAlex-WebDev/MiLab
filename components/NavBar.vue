@@ -19,8 +19,8 @@ const router = useRouter();
 const selectedLanguage = ref<string>(locale.value);
 
 // Function that switches app locale and updates path based on `lang` code
-// - lang (string): Locale code to switch to (e.g., 'en', 'fr')
-const changeLanguage = (lang: "en" | "fr"): void => {
+// - lang (string): Locale code to switch to (e.g., 'en', 'fr', 'bg')
+const changeLanguage = (lang: "en" | "bg"): void => {
   const newPath = switchLocalePath(lang);
   if (newPath) {
     selectedLanguage.value = lang;
@@ -75,15 +75,15 @@ const changeLanguage = (lang: "en" | "fr"): void => {
             </v-list-item-title>
           </v-list-item>
 
-          <!-- Language: French -->
-          <v-list-item @click="changeLanguage('fr')">
+          <!-- Language: Bulgarian -->
+          <v-list-item @click="changeLanguage('bg')">
             <v-list-item-title
               :class="{
-                'font-weight-bold': selectedLanguage === 'fr',
+                'font-weight-bold': selectedLanguage === 'bg',
               }"
               class="text-teal"
             >
-              French
+              Bulgarian
             </v-list-item-title>
           </v-list-item>
         </v-list>

@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import type { DashboardItem } from "~/types/dashboard";
 
-// Router instance
-const router = useRouter();
-
 // Localization logic
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 // Dashboard items
@@ -19,7 +17,7 @@ onMounted(async () => {
     // Fetch dashboard data
     const rawItems = await useFetchData<DashboardItem[]>("/dashboard");
 
-    // Map through items and localize the paths
+    // Map through items and localize the paths, titles, and subtitles
     items.value = rawItems.map((item) => {
       const basePath = `/portal-mockup${item.path}`;
       const href = localePath(basePath);
@@ -27,6 +25,8 @@ onMounted(async () => {
       return {
         ...item,
         href,
+        title: t(`home_page.dashboard_items.${item.key}.title`, item.key),
+        subtitle: t(`home_page.dashboard_items.${item.key}.subtitle`, item.key),
       };
     });
   } catch (error) {
@@ -44,7 +44,9 @@ onMounted(async () => {
     <!-- User Welcome Section -->
     <v-row class="px-6 py-4 align-center d-flex flex-column flex-sm-row">
       <v-col class="d-flex justify-center justify-sm-start py-0">
-        <span class="text-h4 font-weight-bold text-teal">Welcome back!</span>
+        <span class="text-h4 font-weight-bold text-teal">{{
+          $t("home_page.title")
+        }}</span>
       </v-col>
 
       <v-col class="d-flex justify-center justify-sm-end py-0">

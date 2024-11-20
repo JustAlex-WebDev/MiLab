@@ -1,6 +1,6 @@
 // Import locale translations
 import en from "./locales/en.json";
-import fr from "./locales/fr.json";
+import bg from "./locales/bg.json";
 
 // Configure I18n settings
 export default defineI18nConfig(() => ({
@@ -8,6 +8,6 @@ export default defineI18nConfig(() => ({
   locale: "en",
   messages: {
     en,
-    fr,
+    bg,
   },
 }));

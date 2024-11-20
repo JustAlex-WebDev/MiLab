@@ -2,12 +2,25 @@
 // Props
 definePageMeta({ layout: "login" });
 
+useHead({
+  title: "MiLab - Login",
+  meta: [
+    {
+      name: "description",
+      content: "Login into your MiLab account.",
+    },
+  ],
+});
+
 // State for form fields and control variables
 const router = useRouter();
 const userId = ref<string>("");
 const password = ref<string>("");
 const visible = ref<boolean>(true);
 const rememberMe = ref<boolean>(false);
+
+// Localization Logic
+const localePath = useLocalePath();
 
 // Retrieve remembered userId from localStorage on page load
 onMounted(() => {
@@ -24,7 +37,7 @@ const handleLogin = () => {
   rememberMe.value
     ? localStorage.setItem("rememberedUserId", userId.value)
     : localStorage.removeItem("rememberedUserId");
-  router.push("/portal-mockup");
+  router.push(localePath("/portal-mockup"));
 };
 
 // Function that toggles password visibility
@@ -58,7 +71,7 @@ const appendInnerIcon = (field: string) =>
         >
           <v-card-title
             class="text-center text-h4 text-teal font-weight-bold mb-4"
-            >Welcome back!</v-card-title
+            >{{ $t("home_page.title") }}</v-card-title
           >
           <v-card-text>
             <!-- Form -->
@@ -92,7 +105,7 @@ const appendInnerIcon = (field: string) =>
               <!-- "Remember me" checkbox -->
               <v-checkbox
                 v-model="rememberMe"
-                label="Remember me"
+                :label="$t('login_page.remember_me')"
                 hide-details
                 class="mt-n4 mb-2"
               ></v-checkbox>
@@ -105,7 +118,7 @@ const appendInnerIcon = (field: string) =>
                 rounded="lg"
                 class="w-100 font-weight-bold"
               >
-                Sign In
+                {{ $t("login_page.sign_in") }}
               </v-btn>
             </v-form>
           </v-card-text>

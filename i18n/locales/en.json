@@ -1,5 +1,118 @@
 {
-  "welcome": "Welcome",
-  "home": "Home",
-  "profile": "Profile"
+  "home_page": {
+    "title": "Welcome back!",
+
+    "dashboard_items": {
+      "results": {
+        "title": "Results",
+        "subtitle": "Check out your results"
+      },
+      "export_results": {
+        "title": "Export Results",
+        "subtitle": "Get your results in a PDF file"
+      },
+      "bank_info": {
+        "title": "Bank Info",
+        "subtitle": "More info about your payments"
+      },
+      "sign_out": {
+        "title": "Sign Out",
+        "subtitle": "Exit and close the session"
+      }
+    }
+  },
+
+  "breadcrumbs": {
+    "home": "Home",
+    "results": "Results"
+  },
+
+  "results_page": {
+    "title": "Your Results",
+    "export_button": "Export",
+
+    "table_data": {
+      "address": {
+        "label": "Address",
+        "value": "SMDL Milab Ltd, Plovdiv 4003, ul. 'Igrishte Kubrat' No. 126, floor 2"
+      },
+      "date": {
+        "label": "Date",
+        "value": "04.11.2024"
+      },
+      "patient": {
+        "label": "Patient",
+        "value": "Velin Emilov Petrov (M, 36 y.o.)"
+      },
+      "id": {
+        "label": "ID",
+        "value": "2125972"
+      },
+      "egn": {
+        "label": "EGN",
+        "value": "8808136342"
+      },
+      "external_id": {
+        "label": "External ID",
+        "value": ""
+      },
+      "doctor": {
+        "label": "Doctor",
+        "value": ""
+      },
+      "fund_clinic": {
+        "label": "Fund Clinic",
+        "value": "1/2"
+      },
+      "scheme": {
+        "label": "Scheme",
+        "value": "Internal"
+      },
+      "approved_by": {
+        "label": "Approved By",
+        "value": ""
+      },
+      "phone": {
+        "label": "Phone",
+        "value": ""
+      },
+      "passport": {
+        "label": "Passport",
+        "value": ""
+      },
+      "note": {
+        "label": "Note",
+        "value": "Velin here. I want to check something, so I am registering. Unless otherwise stated, the reference ranges are for Male, 36 years old."
+      },
+      "drug_monitoring": {
+        "label": "Drug Monitoring",
+        "value": "Homocysteine"
+      },
+      "result": {
+        "label": "Result",
+        "value": "Not Ready"
+      },
+      "units": {
+        "label": "Units",
+        "value": "µmol/l"
+      },
+      "therapeutic_boundaries": {
+        "label": "Therapeutic Boundaries",
+        "value": "Up to 15.00"
+      },
+      "attention": {
+        "label": "Attention",
+        "value": "Laboratory results are not a diagnosis, but a basis for it. Taking any medications without a prescription may be dangerous for your health. Please consult qualified doctors for interpretation of the results."
+      },
+      "printed_on": {
+        "label": "Printed On",
+        "value": "13.11.2024 21:00:22 iLab Laboratory Information System. (C) SKYWARE Group Ltd http://ilab.skyware-group.com"
+      }
+    }
+  },
+
+  "login_page": {
+    "remember_me": "Remember me",
+    "sign_in": "Sign In"
+  }
 }
