@@ -2,6 +2,7 @@
 // Props
 definePageMeta({ layout: "login" });
 
+// Set the page's head metadata
 useHead({
   title: "MiLab - Login",
   meta: [

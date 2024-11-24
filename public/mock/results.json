@@ -1,59 +1,59 @@
-[
-  {
-    "key": "address"
+{
+  "personTable": {
+    "headers": [
+      { "title": "ID/Date", "key": "idDate", "align": "start" },
+      { "title": "Sale Schema", "key": "saleSchema", "align": "start" },
+      { "title": "Doctor", "key": "doctor", "align": "start" },
+      { "title": "Fund1", "key": "fund1", "align": "start" },
+      { "title": "Fund2", "key": "fund2", "align": "start" }
+    ],
+    "data": [
+      {
+        "idDate": "1/01 Jan 2023 12:00",
+        "saleSchema": "Schema Name",
+        "doctor": "Dr. Smith",
+        "fund1": "Fund1 Name",
+        "fund2": "Fund2 Name"
+      }
+    ]
   },
-  {
-    "key": "date"
-  },
-  {
-    "key": "patient"
-  },
-  {
-    "key": "id"
-  },
-  {
-    "key": "egn"
-  },
-  {
-    "key": "external_id"
-  },
-  {
-    "key": "doctor"
-  },
-  {
-    "key": "fund_clinic"
-  },
-  {
-    "key": "scheme"
-  },
-  {
-    "key": "approved_by"
-  },
-  {
-    "key": "phone"
-  },
-  {
-    "key": "passport"
-  },
-  {
-    "key": "note"
-  },
-  {
-    "key": "drug_monitoring"
-  },
-  {
-    "key": "result"
-  },
-  {
-    "key": "units"
-  },
-  {
-    "key": "therapeutic_boundaries"
-  },
-  {
-    "key": "attention"
-  },
-  {
-    "key": "printed_on"
+  "departmentTable": {
+    "headers": [
+      { "title": "Examination", "key": "examination", "align": "start" },
+      { "title": "Flag", "key": "flag", "align": "start" },
+      { "title": "Result", "key": "result", "align": "end" },
+      { "title": "Measurement", "key": "measurement", "align": "start" },
+      { "title": "Reference Range", "key": "referenceRange", "align": "start" }
+    ],
+    "data": [
+      {
+        "examination": "Product Name",
+        "flag": "",
+        "result": "",
+        "measurement": "",
+        "referenceRange": ""
+      },
+      {
+        "examination": "Product Name",
+        "flag": "Flag",
+        "result": "Result",
+        "measurement": "Units",
+        "referenceRange": "Range"
+      },
+      {
+        "examination": "Product Name2",
+        "flag": "",
+        "result": "",
+        "measurement": "",
+        "referenceRange": ""
+      },
+      {
+        "examination": "Product Name2",
+        "flag": "Flag2",
+        "result": "Result2",
+        "measurement": "Units2",
+        "referenceRange": "Range2"
+      }
+    ]
   }
-]
+}

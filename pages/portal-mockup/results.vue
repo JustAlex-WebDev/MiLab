@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import type { TableDataRow } from "~/types/results";
+import type {
+  DepartmentTableRow,
+  Header,
+  PersonTableRow,
+} from "~/types/results";
 
+// Set the page's head metadata
 useHead({
   title: "MiLab - Results",
   meta: [
@@ -12,8 +17,13 @@ useHead({
 });
 
 // Table data and loading state
-const tableData = ref<TableDataRow[]>([]);
-const loading = ref(true);
+const personTableData = ref<PersonTableRow[]>([]);
+const departmentTableData = ref<DepartmentTableRow[]>([]);
+
+const personTableHeaders = ref<Header[]>([]);
+const departmentTableHeaders = ref<Header[]>([]);
+
+const loading = ref<boolean>(true);
 
 // Localization Logic
 const { t } = useI18n();
@@ -41,26 +51,20 @@ const fetchData = async () => {
     // Fetch data from the API (client-side)
     const data = await $fetch("/api/results");
 
-    /// Map the mock data with localized strings and add a 'key' property temporarily
-    tableData.value = data.map((item: { key: string }) => {
-      const labelKey = item.key;
+    // Set data for personTable and departmentTable
+    personTableData.value = data.personTable.data;
+    personTableHeaders.value = data.personTable.headers.map((header) => ({
+      ...header,
+      align: header.align as "start" | "center" | "end" | undefined,
+    }));
 
-      // Get the localized label and value
-      const localizedLabel = t(
-        `results_page.table_data.${labelKey}.label`,
-        item.key
-      );
-      const localizedValue = t(
-        `results_page.table_data.${labelKey}.value`,
-        item.key
-      );
-
-      // Return only the 'label' and 'value' properties for the table
-      return {
-        label: localizedLabel,
-        value: localizedValue,
-      };
-    });
+    departmentTableData.value = data.departmentTable.data;
+    departmentTableHeaders.value = data.departmentTable.headers.map(
+      (header) => ({
+        ...header,
+        align: header.align as "start" | "center" | "end" | undefined,
+      })
+    );
   } catch (error) {
     console.error("Error fetching results:", error);
   } finally {
@@ -68,7 +72,7 @@ const fetchData = async () => {
   }
 };
 
-// Watch the route to trigger a re-fetch of data whenever the route changes
+// Re-fetch data whenever the route changes
 watch(
   () => useRouter().currentRoute,
   () => {
@@ -78,7 +82,7 @@ watch(
   { immediate: true }
 );
 
-// Fetch data after the component has mounted
+// Fetch data when the component is mounted
 onMounted(() => {
   fetchData();
 });
@@ -91,25 +95,48 @@ onMounted(() => {
 
     <!-- Page Title and Export Button -->
     <v-row class="pt-4 px-4 d-flex">
+      <!-- Page Title -->
       <span class="text-teal text-h4 font-weight-bold">{{
         $t("results_page.title")
       }}</span>
+
+      <!-- Spacer -->
       <v-spacer></v-spacer>
+
+      <!-- Export Button -->
       <v-btn
         prepend-icon="mdi-file-document-outline"
         type="button"
         variant="outlined"
         rounded="lg"
         color="teal"
-        class="font-weight-medium"
       >
         {{ $t("results_page.export_button") }}
       </v-btn>
     </v-row>
 
-    <!-- Conditional Table Component -->
+    <!-- Conditional Table Components -->
     <div v-if="loading">Loading...</div>
-    <div v-else-if="tableData.length === 0">No results available</div>
-    <Table v-else :data="tableData" />
+    <div
+      v-else-if="
+        personTableData.length === 0 || departmentTableData.length === 0
+      "
+    >
+      No results available
+    </div>
+
+    <!-- Person Table Component -->
+    <PersonTable
+      :personTableData="personTableData"
+      :personTableHeaders="personTableHeaders"
+      personDataTitle="John Doe, M, 30"
+      personId="12345"
+    />
+
+    <!-- Department Table Component -->
+    <DepartmentTable
+      :departmentTableData="departmentTableData"
+      :departmentTableHeaders="departmentTableHeaders"
+    />
   </v-container>
 </template>

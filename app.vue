@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Set the page's head metadata
 useHead({
   title: "MiLab",
   meta: [
