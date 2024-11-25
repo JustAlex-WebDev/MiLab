@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Header, PersonTableRow } from "~/types/results";
+import type { Header, ResultsTableRow } from "~/types/results";
 import { useDisplay } from "vuetify";
 
 // Breakpoints logic
@@ -9,7 +9,7 @@ const isMounted = ref(false);
 // Props
 const props = defineProps({
   personTableData: {
-    type: Array as () => PersonTableRow[],
+    type: Array as () => ResultsTableRow[],
     required: true,
   },
   personTableHeaders: {
@@ -21,6 +21,10 @@ const props = defineProps({
     required: true,
   },
   personId: {
+    type: String,
+    required: true,
+  },
+  personPID: {
     type: String,
     required: true,
   },
@@ -44,8 +48,8 @@ onMounted(() => {
     <!-- Table Top Section -->
     <template v-slot:top>
       <v-toolbar class="bg-white" height="28">
-        <!-- Name -->
-        <v-toolbar-title class="mx-4 flex-0-1 text-h6">{{
+        <!-- Title -->
+        <v-toolbar-title class="ml-4 mr-2 flex-0-1 text-h6">{{
           personDataTitle
         }}</v-toolbar-title>
 
@@ -110,7 +114,7 @@ onMounted(() => {
       <!-- PID -->
       <v-toolbar class="bg-white" height="24">
         <v-toolbar-title class="ml-4 text-body-2"
-          >PID: {{ personId }}</v-toolbar-title
+          >PID: {{ personPID }}</v-toolbar-title
         >
       </v-toolbar>
     </template>

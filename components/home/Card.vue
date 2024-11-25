@@ -23,7 +23,9 @@ defineProps<{
           </v-icon>
 
           <!-- Heading Text -->
-          <span class="ms-3 text-h6 font-weight-bold">{{ item.title }}</span>
+          <span class="ms-3 text-h6 font-weight-bold text-teal">{{
+            item.title
+          }}</span>
 
           <!-- Spacer -->
           <v-spacer></v-spacer>

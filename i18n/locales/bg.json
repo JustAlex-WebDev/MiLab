@@ -24,12 +24,17 @@
 
   "breadcrumbs": {
     "home": "Начало",
-    "results": "Резултати"
+    "results": "Резултати",
+    "bank_info": "Банкова информация"
   },
 
   "results_page": {
     "title": "Резултати",
     "export_button": "PDF"
+  },
+
+  "bank_info_page": {
+    "title": "Банкова информация"
   },
 
   "login_page": {

@@ -44,7 +44,7 @@ const items = [
   },
   {
     title: "Export Results",
-    path: `${localePath("/portal-mockup/export-results")}`,
+    path: `${localePath("/portal-mockup/")}`,
     icon: "mdi-file-export-outline",
   },
   {
@@ -92,7 +92,7 @@ const languageDropdown = ref(false);
 
 // Change language and close the language dropdown menu
 const changeLanguage = (code: string) => {
-  const path = switchLocalePath(code as "en" | "fr");
+  const path = switchLocalePath(code as "en" | "bg");
   router.push(path);
   languageDropdown.value = false;
 };

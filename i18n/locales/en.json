@@ -24,12 +24,17 @@
 
   "breadcrumbs": {
     "home": "Home",
-    "results": "Results"
+    "results": "Results",
+    "bank_info": "Bank Information"
   },
 
   "results_page": {
     "title": "Your Results",
     "export_button": "Export"
+  },
+
+  "bank_info_page": {
+    "title": "Bank Information"
   },
 
   "login_page": {

@@ -1,0 +1,62 @@
+{
+  "accountTable": {
+    "headers": [{ "title": "ID/Date", "key": "idDate", "align": "start" }],
+    "data": [
+      {
+        "idDate": "1/01 Jan 2023 12:00"
+      }
+    ]
+  },
+  "balanceTable": {
+    "headers": [
+      { "title": "Total", "key": "total", "align": "start" },
+      { "title": "Paid", "key": "paid", "align": "start" },
+      { "title": "Due", "key": "due", "align": "start" }
+    ],
+    "data": [
+      {
+        "total": "100.00 BGN",
+        "paid": "50.00 BGN",
+        "due": "50.00 BGN"
+      }
+    ]
+  },
+  "saleTable": {
+    "headers": [
+      { "title": "ID/Date", "key": "idDate", "align": "start" },
+      { "title": "Sale Schema", "key": "saleSchema", "align": "start" }
+    ],
+    "data": [
+      {
+        "idDate": "1/01 Jan 2023 12:00",
+        "saleSchema": "Standard"
+      }
+    ]
+  },
+  "productsTable": {
+    "headers": [
+      { "title": "Product", "key": "product", "align": "start" },
+      { "title": "Price", "key": "price", "align": "end" }
+    ],
+    "data": [
+      {
+        "product": "Product 1",
+        "price": "50.00 BGN"
+      }
+    ]
+  },
+  "paymentsTable": {
+    "headers": [
+      { "title": "Payment Date", "key": "paymentDate", "align": "start" },
+      { "title": "Payment Type", "key": "paymentType", "align": "start" },
+      { "title": "Sum", "key": "sum", "align": "end" }
+    ],
+    "data": [
+      {
+        "paymentDate": "1/01 Jan 2023 12:00",
+        "paymentType": "Cash",
+        "sum": "50.00 BGN"
+      }
+    ]
+  }
+}

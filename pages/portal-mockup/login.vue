@@ -59,6 +59,7 @@ const appendInnerIcon = (field: string) =>
   <!-- Main container -->
   <v-container
     class="d-flex align-center justify-center"
+    max-width="1024"
     style="height: calc(80vh - 140px)"
   >
     <v-row justify="center">

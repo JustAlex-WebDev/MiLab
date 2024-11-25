@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import type { Header, DepartmentTableRow } from "~/types/results";
+import type { Header, BankInfoTableRow } from "~/types/bank-info";
 
 // Props
 const props = defineProps({
-  departmentTableData: {
-    type: Array as () => DepartmentTableRow[],
+  productsTableData: {
+    type: Array as () => BankInfoTableRow[],
     required: true,
   },
-  departmentTableHeaders: {
+  productsTableHeaders: {
     type: Array as () => Header[],
+    required: true,
+  },
+  productsDataTitle: {
+    type: String,
     required: true,
   },
 });
@@ -16,33 +20,20 @@ const props = defineProps({
 
 <template>
   <v-data-table
-    :items="departmentTableData"
+    :items="productsTableData"
     hide-default-footer
     hide-default-header
     density="compact"
-    class="my-8 bg-white rounded-lg py-2"
+    class="bg-white rounded-lg py-2"
     style="border-left: 2px solid teal"
   >
     <!-- Table Top Section -->
     <template v-slot:top>
       <v-toolbar class="bg-white" height="28">
-        <!-- Table Name -->
-        <v-toolbar-title class="mx-4 flex-0-1 text-h6"
-          >Department Name</v-toolbar-title
-        >
-      </v-toolbar>
-
-      <!-- Note Input -->
-      <v-toolbar class="bg-white" height="48">
-        <v-text-field
-          label="Note Text"
-          variant="underlined"
-          :hide-details="true"
-          color="teal"
-          density="compact"
-          rounded="lg"
-          class="mx-2 text-body-2 pl-2"
-        />
+        <!-- Title -->
+        <v-toolbar-title class="mx-4 flex-0-1 text-h6">{{
+          productsDataTitle
+        }}</v-toolbar-title>
       </v-toolbar>
     </template>
 
@@ -52,10 +43,10 @@ const props = defineProps({
         <tr>
           <!-- Looping through headers -->
           <th
-            v-for="header in departmentTableHeaders"
+            v-for="header in productsTableHeaders"
             :key="header.key"
             class="font-weight-bold bg-white text-teal"
-            :class="{ 'text-end': header.key === 'result' }"
+            :class="{ 'text-end': header.key === 'price' }"
             style="min-width: 140px"
           >
             <!-- Header Title -->
@@ -71,18 +62,11 @@ const props = defineProps({
       <tr v-for="(item, rowIndex) in items" :key="rowIndex">
         <!-- Loop through the table headers -->
         <td
-          v-for="(header, headerIndex) in departmentTableHeaders"
+          v-for="header in productsTableHeaders"
           :key="header.key"
           style="min-width: 140px"
           :class="{
-            'bg-teal': header.key === 'flag' && rowIndex === 1,
-            'text-end': header.key === 'result',
-          }"
-          :style="{
-            background:
-              headerIndex === 2 && rowIndex === 1
-                ? 'linear-gradient(to right, #009688, white)'
-                : '',
+            'text-end': header.key === 'price',
           }"
         >
           <!-- Bind the data using the headers -->

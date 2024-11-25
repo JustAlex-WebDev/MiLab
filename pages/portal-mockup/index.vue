@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import ErrorModal from "~/components/common/ErrorModal.vue";
+import Card from "~/components/home/Card.vue";
 import type { DashboardItem } from "~/types/dashboard";
 
 // Localization logic
 const { t } = useI18n();
 const localePath = useLocalePath();
+
+// Reactive states for error handling
+const errorDialog = ref(false);
+const errorMessage = ref("");
 
 // Dashboard items
 const items = ref<DashboardItem[]>([]);
@@ -32,6 +38,11 @@ onMounted(async () => {
   } catch (error) {
     // Log error if fetching fails
     console.error("Error fetching dashboard items:", error);
+
+    // Set error message and show the error dialog
+    errorMessage.value =
+      "Failed to load dashboard items. Please refresh the page or try again later.";
+    errorDialog.value = true;
   } finally {
     // Stop loading indicator once the data is processed
     loading.value = false;
@@ -40,7 +51,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-container class="pa-0 pt-4">
+  <v-container class="pa-0 pt-4" max-width="1024">
     <!-- User Welcome Section -->
     <v-row class="px-6 py-4 align-center d-flex flex-column flex-sm-row">
       <v-col class="d-flex justify-center justify-sm-start py-0">
@@ -72,5 +83,8 @@ onMounted(async () => {
         <Card :item="item" />
       </v-col>
     </v-row>
+
+    <!-- Reusable Error Modal -->
+    <ErrorModal v-model="errorDialog" :message="errorMessage" title="Error" />
   </v-container>
 </template>

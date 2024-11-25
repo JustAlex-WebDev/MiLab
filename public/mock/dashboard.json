@@ -6,12 +6,12 @@
   },
   {
     "key": "export_results",
-    "path": "/export-results",
+    "path": "/",
     "icon": "mdi-file-export-outline"
   },
   {
     "key": "bank_info",
-    "path": "/",
+    "path": "/bank-info",
     "icon": "mdi-bank-outline"
   },
   {

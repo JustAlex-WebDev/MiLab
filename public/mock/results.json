@@ -55,5 +55,19 @@
         "referenceRange": "Range2"
       }
     ]
+  },
+  "samplesTable": {
+    "headers": [
+      { "title": "Sample Type", "key": "sampleType", "align": "start" },
+      { "title": "Barcode", "key": "barcode", "align": "start" },
+      { "title": "Taken Date", "key": "takenDate", "align": "start" }
+    ],
+    "data": [
+      {
+        "sampleType": "Sample Type Name",
+        "barcode": "123456789",
+        "takenDate": "01 Jan 2023"
+      }
+    ]
   }
 }

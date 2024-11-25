@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import type {
-  DepartmentTableRow,
-  Header,
-  PersonTableRow,
-} from "~/types/results";
+import Breadcrumbs from "~/components/common/Breadcrumbs.vue";
+import ErrorModal from "~/components/common/ErrorModal.vue";
+import DepartmentTable from "~/components/results/DepartmentTable.vue";
+import PersonTable from "~/components/results/PersonTable.vue";
+import SamplesTable from "~/components/results/SamplesTable.vue";
+import TableFooter from "~/components/results/TableFooter.vue";
+
+// Destructure reactive data and state variables from the `useResults` composable
+const { loading, errorDialog, errorMessage, tables } = useResults();
 
 // Set the page's head metadata
 useHead({
@@ -15,15 +19,6 @@ useHead({
     },
   ],
 });
-
-// Table data and loading state
-const personTableData = ref<PersonTableRow[]>([]);
-const departmentTableData = ref<DepartmentTableRow[]>([]);
-
-const personTableHeaders = ref<Header[]>([]);
-const departmentTableHeaders = ref<Header[]>([]);
-
-const loading = ref<boolean>(true);
 
 // Localization Logic
 const { t } = useI18n();
@@ -42,54 +37,10 @@ const breadcrumbs = ref([
     href: localePath("/portal-mockup/results"),
   },
 ]);
-
-/**
- * Function to fetch the results data
- */
-const fetchData = async () => {
-  try {
-    // Fetch data from the API (client-side)
-    const data = await $fetch("/api/results");
-
-    // Set data for personTable and departmentTable
-    personTableData.value = data.personTable.data;
-    personTableHeaders.value = data.personTable.headers.map((header) => ({
-      ...header,
-      align: header.align as "start" | "center" | "end" | undefined,
-    }));
-
-    departmentTableData.value = data.departmentTable.data;
-    departmentTableHeaders.value = data.departmentTable.headers.map(
-      (header) => ({
-        ...header,
-        align: header.align as "start" | "center" | "end" | undefined,
-      })
-    );
-  } catch (error) {
-    console.error("Error fetching results:", error);
-  } finally {
-    loading.value = false;
-  }
-};
-
-// Re-fetch data whenever the route changes
-watch(
-  () => useRouter().currentRoute,
-  () => {
-    loading.value = true;
-    fetchData();
-  },
-  { immediate: true }
-);
-
-// Fetch data when the component is mounted
-onMounted(() => {
-  fetchData();
-});
 </script>
 
 <template>
-  <v-container>
+  <v-container max-width="1024">
     <!-- Breadcrumbs Navigation Component -->
     <Breadcrumbs :items="breadcrumbs" />
 
@@ -115,28 +66,36 @@ onMounted(() => {
       </v-btn>
     </v-row>
 
-    <!-- Conditional Table Components -->
-    <div v-if="loading">Loading...</div>
-    <div
-      v-else-if="
-        personTableData.length === 0 || departmentTableData.length === 0
-      "
-    >
-      No results available
-    </div>
-
     <!-- Person Table Component -->
     <PersonTable
-      :personTableData="personTableData"
-      :personTableHeaders="personTableHeaders"
+      v-if="!loading"
+      :personTableData="tables.personTable.data"
+      :personTableHeaders="tables.personTable.headers"
       personDataTitle="John Doe, M, 30"
       personId="12345"
+      personPID="123456789"
     />
 
     <!-- Department Table Component -->
     <DepartmentTable
-      :departmentTableData="departmentTableData"
-      :departmentTableHeaders="departmentTableHeaders"
+      v-if="!loading"
+      :departmentTableData="tables.departmentTable.data"
+      :departmentTableHeaders="tables.departmentTable.headers"
+      departmentDataTitle="Department Name"
     />
+
+    <!-- Samples Table Component -->
+    <SamplesTable
+      v-if="!loading"
+      :samplesTableData="tables.samplesTable.data"
+      :samplesTableHeaders="tables.samplesTable.headers"
+      samplesDataTitle="Used Samples"
+    />
+
+    <!-- Table Footer Component -->
+    <TableFooter v-if="!loading" />
+
+    <!-- Reusable Error Modal -->
+    <ErrorModal v-model="errorDialog" :message="errorMessage" title="Error" />
   </v-container>
 </template>

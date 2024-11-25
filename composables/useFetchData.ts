@@ -1,7 +1,11 @@
-/**
- * Function that fetches data from the specified API endpoint
- */
-export const useFetchData = async <T>(endpoint: string): Promise<T> => {
+export const useFetchData = async <T>(
+  endpoint: string,
+  showErrorDialog = true
+): Promise<T> => {
+  // Import or define error dialog and message refs globally or in a composable
+  const errorDialog = ref(false);
+  const errorMessage = ref("");
+
   try {
     // Ensure the endpoint has '/api' prefix
     const url = endpoint.startsWith("/api") ? endpoint : `/api${endpoint}`;
@@ -18,8 +22,16 @@ export const useFetchData = async <T>(endpoint: string): Promise<T> => {
     // Return the fetched data
     return data;
   } catch (err) {
-    // Log and re-throw error in case of failure
     console.error("Error fetching data:", err);
+
+    // Display the error modal with a user-friendly message
+    if (showErrorDialog) {
+      errorMessage.value =
+        "An unexpected error occurred. Please try again later.";
+      errorDialog.value = true;
+    }
+
+    // Re-throw the error for further handling if needed
     throw err;
   }
 };
